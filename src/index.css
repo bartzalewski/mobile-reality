@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +13,42 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.btn {
+  color: #009cff;
+  border: 2px solid #009cff;
+  padding: 10px 25px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Anton', sans-serif;
+  font-weight: 500;
+}
+
+p,
+a {
+  font-family: 'Raleway';
+}
+
+@media screen and (max-width: 1050px) {
+  .first-page__grid,
+  .second-tile__grid {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .first-page__grid {
+    grid-gap: 50px 0 !important;
+  }
+
+  .second-tile__grid {
+    height: inherit !important;
+  }
 }

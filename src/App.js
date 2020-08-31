@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import FirstPage from './components/FirstPage';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import SecondPage from './components/SecondPage';
+import ThirdPage from './components/ThirdPage';
+import FourthPage from './components/FourthPage';
+import { connect } from 'react-redux';
+import * as reactStore from './store/actions/actions';
+import HouseSummary from './components/houses/HouseSummary';
+import Error from './components/Error';
+import Footer from './components/Footer';
+import CreateHouse from './components/houses/CreateHouse';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={FirstPage} />
+        <Route path="/second-page" component={SecondPage} />
+        <Route path="/third-page" component={ThirdPage} />
+        <Route path="/fourth-page" component={FourthPage} />
+        <Route path="/house/:id" component={HouseSummary} />
+        <Route path="/create" component={CreateHouse} />
+        <Route component={Error} />
+      </Switch>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    houses: state.houses,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchHouses: (e) => dispatch(reactStore.fetchHouses(e)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
